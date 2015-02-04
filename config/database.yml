@@ -1,0 +1,8 @@
+development:
+  adapter: postgresql
+  database: teacher_tracker_development
+  template: template0
+  test:
+    adapter: postgresql
+    database: teacher_tracker_test
+    template: template0

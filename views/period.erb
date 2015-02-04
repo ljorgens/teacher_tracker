@@ -1,0 +1,10 @@
+<h1>Edit the <%= @period.name() %></h1>
+
+<form action="/period/<%= @period.id() %>" method="post">
+  <select name="student_list" type = "text">
+    <% @students.each() do |student| %>
+    <option value="<%= student.id() %>"> <%= student.name() %> </option>
+  <% end %>
+  </select>
+  <button name="submit" class="btn btn-success">Add Student</button>
+  </form>

@@ -1,0 +1,35 @@
+<h1>Teacher Tracker</h1>
+
+<form action="/periods" method="post">
+  <input type="text" name="name" placeholder="Period">
+  <button name="submit" class="btn btn-warning">Add Period</button>
+</form>
+
+<ul>
+  <% if @periods.any? %>
+  <% @periods.each() do |period| %>
+  <li><a href="/period/<%= period.id() %>"><%= period.name() %></a></li>
+  <% end %>
+  <% else %>
+  <p>
+    You dont have a period
+  </p>
+<% end %>
+  </ul>
+
+<form action="/students" method="post">
+  <input type="text" name="name" placeholder="Student Name">
+  <button name="submit" class = 'btn btn-info'>Add Student</button>
+</form>
+
+<ul>
+  <% if @students.any? %>
+  <% @students.each() do |student| %>
+  <li><a href="/student/<%= student.id() %>"><%= student.name() %></a></li>
+  <% end %>
+  <% else %>
+  <p>
+    You dont have any students
+  </p>
+<% end %>
+  </ul>
