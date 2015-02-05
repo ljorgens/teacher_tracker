@@ -22,15 +22,15 @@ ActiveRecord::Schema.define(version: 20150204224039) do
     t.datetime "updated_at"
   end
 
+  create_table "periods_students", force: :cascade do |t|
+    t.integer "student_id"
+    t.integer "period_id"
+  end
+
   create_table "students", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "students_periods", force: :cascade do |t|
-    t.integer "student_id"
-    t.integer "period_id"
   end
 
 end

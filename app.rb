@@ -41,6 +41,7 @@ end
 get('/student/:id') do
   @student = Student.find(params.fetch('id'))
   @periods = Period.all()
+  @periods_student_has = @periods
   erb(:student)
 end
 

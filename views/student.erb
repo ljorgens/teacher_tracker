@@ -8,3 +8,15 @@
   </select>
   <button name="submit" class="btn btn-success">Add Period</button>
   </form>
+
+  <ul>
+    <% if @periods.any?() %>
+      <% @periods.each() do |period| %>
+      <li><%= period.name %></li>
+      <% end %>
+      <% else %>
+      <p>
+        Student has no periods!!
+      </p>
+      <% end %>
+  </ul>
