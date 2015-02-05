@@ -1,7 +1,11 @@
+<div class="jumbotron">
+
 <h1>Teacher Tracker</h1>
 
-<form action="/periods" method="post">
-  <input type="text" name="name" placeholder="Period">
+
+</div>
+<form action="/periods" method="post" >
+  <input type="text" name="name" placeholder="Period" autofocus="true" required>
   <button name="submit" class="btn btn-warning">Add Period</button>
 </form>
 
@@ -17,15 +21,16 @@
 <% end %>
   </ul>
 
-<form action="/students" method="post">
-  <input type="text" name="name" placeholder="Student Name">
+<form action="/students" method="post" required>
+  <input type="text" name="name" placeholder="Student Name" required>
+  <input type="text" name="birthday" placeholder = "day/month/year" required>
   <button name="submit" class = 'btn btn-info'>Add Student</button>
 </form>
 
 <ul>
   <% if @students.any? %>
-  <% @students.each() do |student| %>
-  <li><a href="/student/<%= student.id() %>"><%= student.name() %></a></li>
+  <% @students.order('name ASC').each() do |student| %>
+  <li><a href="/student/<%= student.id() %>"><%= student.name() %></a> Birthday: <%= student.birthday() %></li>
   <% end %>
   <% else %>
   <p>

@@ -1,10 +1,48 @@
 <h1>Edit the <%= @period.name() %></h1>
 
-<form action="/period/<%= @period.id() %>" method="post">
-  <select name="student_list" type = "text">
+<form action="/period/<%= @period.id %>/edit" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <input type="text" name="new_period" placeholder="Edited Period" required>
+  <button name="submit" class="btn btn-success">Add Edit</button>
+</form>
+
+<form action="/period/<%= @period.id() %>" method="post" >
+  <select name="student" type = "text">
     <% @students.each() do |student| %>
     <option value="<%= student.id() %>"> <%= student.name() %> </option>
   <% end %>
   </select>
   <button name="submit" class="btn btn-success">Add Student</button>
   </form>
+
+<h3>Students enrolled in this period</h3>
+  <ul>
+    <% @period.students.each() do |student| %>
+    <li><a href="/student/<%= student.id() %>"><%= student.name %></a>
+    </form>
+    </li>
+      <% end %>
+  </ul>
+
+  <% if @period.students.any? %>
+  <form action="/period/<%= @period.id() %>/delete" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <select name="student" type = "text">
+      <% @period.students.each() do |student| %>
+      <option value="<%= student.id() %>"> <%= student.name() %> </option>
+    <% end %>
+    </select>
+    <button name="submit" class="btn btn-danger">Delete Student</button>
+    </form>
+
+    <% else %>
+    <p>
+        No periods yet!
+    </p>
+    <% end %>
+
+  <form action="/period/<%= @period.id()%>" method="post">
+      <input type="hidden" name="_method" value="delete">
+        <button class="btn btn-danger" type= "submit">Delete Period</button>
+
+</form>
