@@ -32,7 +32,7 @@
   <% @students.order('name ASC').each() do |student| %>
   <li><a href="/student/<%= student.id() %>"><%= student.name() %></a> Birthday: <%= student.birthday() %></li>
   <% end %>
-  <% else %>
+  <% else %> 
   <p>
     You dont have any students
   </p>
