@@ -107,3 +107,9 @@ new_period = params.fetch("period")
 @student.periods.delete(new_period)
   redirect back
 end
+
+post('/date_range') do
+  @first_date = params.fetch("first_date")
+  @second_date = params.fetch("second_date")
+  redirect back
+end

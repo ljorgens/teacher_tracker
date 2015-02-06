@@ -32,9 +32,21 @@
   <% @students.order('name ASC').each() do |student| %>
   <li><a href="/student/<%= student.id() %>"><%= student.name() %></a> Birthday: <%= student.birthday() %></li>
   <% end %>
-  <% else %> 
+  <% else %>
   <p>
     You dont have any students
   </p>
 <% end %>
   </ul>
+
+  <form action="/date_range" method="post">
+    <input type="text" name="first_date" placeholder = "First Date">
+    <input type="text" name="second_date" placeholder = "Second Date">
+      <button name="submit">Find Students within this date range!</button>
+</form>
+
+<ul>
+<% @students.between_dates(@first_date, @second_date).each do |student| %>
+<li><%= student.birthday %></li>
+<% end %>
+</ul>
