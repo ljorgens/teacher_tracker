@@ -2,6 +2,8 @@ require ("spec_helper")
 
 describe (Student) do
   it { should have_and_belong_to_many(:periods)}
+  it { should have_and_belong_to_many(:grades)}
+
 
   describe(".between") do
     it("shows which birthdays are within the range") do

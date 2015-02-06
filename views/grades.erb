@@ -1,0 +1,23 @@
+<h3>Students enrolled in <%= @period.name %></h3>
+
+<form action="/period/<%= @period.id %>" method="post">
+  <select name="grade" type = "text">
+    
+<ul>
+  <% @period.students.each() do |student| %>
+  <li>
+    <a href="/student/<%= student.id() %>"><%= student.name %></a>
+      <% @students.each() do |student| %>
+      <option value="A">A</option>
+      <option value="B">B</option>
+      <option value="C">C</option>
+      <option value="D">D</option>
+      <option value="F">F</option>
+      <% end %>
+    </select>
+  </li>
+  <% end %>
+</ul>
+<button name="submit" class="btn btn-success">Submit</button>
+
+</form>

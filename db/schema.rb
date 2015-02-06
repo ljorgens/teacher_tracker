@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150205222700) do
+ActiveRecord::Schema.define(version: 20150206225257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "grades", force: :cascade do |t|
+    t.string   "grade"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "periods", force: :cascade do |t|
     t.string   "name"
@@ -25,6 +31,7 @@ ActiveRecord::Schema.define(version: 20150205222700) do
   create_table "periods_students", force: :cascade do |t|
     t.integer "student_id"
     t.integer "period_id"
+    t.string  "grade"
   end
 
   create_table "students", force: :cascade do |t|

@@ -122,3 +122,9 @@ new_period = params.fetch("period")
 @student.periods.delete(new_period)
   redirect back
 end
+
+get('/period/:id/grades') do
+  @period = Period.find(params.fetch('id'))
+  @students = Student.all()
+  erb(:grades)
+end

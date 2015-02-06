@@ -18,8 +18,8 @@
 <h3>Students enrolled in this period</h3>
   <ul>
     <% @period.students.each() do |student| %>
-    <li><a href="/student/<%= student.id() %>"><%= student.name %></a>
-    </form>
+    <li>
+      <a href="/student/<%= student.id() %>"><%= student.name %></a>
     </li>
       <% end %>
   </ul>
@@ -37,12 +37,13 @@
 
     <% else %>
     <p>
-        No periods yet!
+        No students yet!
     </p>
     <% end %>
 
   <form action="/period/<%= @period.id()%>" method="post">
       <input type="hidden" name="_method" value="delete">
         <button class="btn btn-danger" type= "submit">Delete Period</button>
-
 </form>
+
+<a href="/period/<%= @period.id() %>/grades">Enter grades</a>
