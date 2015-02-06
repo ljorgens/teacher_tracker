@@ -1,5 +1,5 @@
 require('bundler/setup')
-Bundler.require(:default, :test)
+Bundler.require(:default)
 
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 
@@ -7,6 +7,7 @@ Dir[File.dirname(__FILE__) + '/lib/*.rb'].each { |file| require file }
 get ('/') do
   @periods = Period.all()
   @students = Student.all()
+  @student_range = Student.all().between(@first_date, @second_date)
   erb(:index)
 end
 
@@ -14,7 +15,9 @@ post('/periods') do
   name = params[:name]
   @period = Period.create({:name => name})
   @periods= Period.all()
-  erb redirect back
+  @students = Student.all()
+  @student_range = Student.all().between(@first_date, @second_date)
+  erb(:index)
 end
 
 post('/students') do
@@ -22,7 +25,18 @@ post('/students') do
   birthday = params.fetch("birthday")
   @student = Student.create({:name => student_name, :birthday => birthday})
   @students = Student.all()
-  erb redirect back
+  @periods = Period.all()
+  @student_range = Student.all().between(@first_date, @second_date)
+  erb(:index)
+end
+
+post('/date_range') do
+  @periods = Period.all()
+  @students = Student.all()
+  @first_date = params.fetch("begin_date")
+  @second_date = params.fetch("end_date")
+  @student_range = Student.all().between(@first_date, @second_date)
+  erb(:index)
 end
 
 patch('/student/:id/edit') do
@@ -74,6 +88,7 @@ post("/student/:id") do
   Period.update({:name => name})
   @students = Student.all
   @periods = Period.all
+  redirect back
 end
 
 delete('/period/:id') do
@@ -105,11 +120,5 @@ delete('/student/:id/delete') do
 @periods = Period.all()
 new_period = params.fetch("period")
 @student.periods.delete(new_period)
-  redirect back
-end
-
-post('/date_range') do
-  @first_date = params.fetch("first_date")
-  @second_date = params.fetch("second_date")
   redirect back
 end

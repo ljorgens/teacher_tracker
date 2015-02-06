@@ -5,6 +5,7 @@ gem("sinatra-contrib", :require => "sinatra/reloader")
 gem("sinatra-activerecord")
 gem("rake")
 gem("pg")
+gem("pry")
 gem("rack", "1.5.2")
 
 group(:test) do

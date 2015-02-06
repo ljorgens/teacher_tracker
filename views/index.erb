@@ -23,7 +23,7 @@
 
 <form action="/students" method="post" required>
   <input type="text" name="name" placeholder="Student Name" required>
-  <input type="text" name="birthday" placeholder = "day/month/year" required>
+  <input type="date" name="birthday" placeholder = "day/month/year" required>
   <button name="submit" class = 'btn btn-info'>Add Student</button>
 </form>
 
@@ -39,14 +39,18 @@
 <% end %>
   </ul>
 
+
+
+
+
   <form action="/date_range" method="post">
-    <input type="text" name="first_date" placeholder = "First Date">
-    <input type="text" name="second_date" placeholder = "Second Date">
-      <button name="submit">Find Students within this date range!</button>
+    <input type="date" name="begin_date" placeholder = "First Date" required>
+    <input type="date" name="end_date" placeholder = "Second Date" required>
+      <button name="submit" class="btn btn-success">Find Students within this date range!</button>
 </form>
 
 <ul>
-<% @students.between_dates(@first_date, @second_date).each do |student| %>
-<li><%= student.birthday %></li>
-<% end %>
+  <% @student_range.each() do |student| %>
+  <li> <%=  student.name %> </li>
+  <% end %>
 </ul>
